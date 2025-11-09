@@ -1,0 +1,41 @@
+# 亚马逊定价配置文件
+# 用于定义不同品类的定价策略，支持默认值和按品类覆盖。
+
+# 兜底配置：适用于所有未在下面单独指定的品类
+fallback:
+  # 亚马逊佣金率 (Amazon's Commission Rate)
+  commission_rate: 0.15
+  # 预估退货率 (Estimated Return Rate)
+  return_rate: 0.05
+  # 结算成本费率 (Settlement Cost Rate)
+  settlement_cost_rate: 0.01
+  # 广告成本费率 (Advertisement Cost Rate)
+  ad_cost_rate: 0.05
+  # 物流破损附加费率 (Logistic Protection Cost Rate)
+  logistic_protection_rate: 0.02
+  # 目标利润率 (Target Margin Rate)
+  target_margin_rate: 0.02
+  # 使用的公式版本 (用于审计和追溯)
+  formula_version: "v1.0-standard"
+
+# 按品类覆盖的特定配置
+categories:
+  # 'home_mirror' 品类的定价策略
+  home_mirror:
+    commission_rate: 0.12     # 假设镜子品类的佣金较低
+    return_rate: 0.08         # 但退货率和物流风险较高
+    logistic_protection_rate: 0.03
+
+  # 'cabinet' 品类的定价策略
+  cabinet:
+    target_margin_rate: 0.03  # 对于柜子，我们期望有更高的目标利润
+
+  # 'furniture' 品类的定价策略
+  furniture:
+    commission_rate: 0.15
+    target_margin_rate: 0.025
+
+  # 'home_decor' 品类的定价策略
+  home_decor:
+    commission_rate: 0.14
+    return_rate: 0.06

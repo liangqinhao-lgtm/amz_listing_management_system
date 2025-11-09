@@ -1,0 +1,2349 @@
+{
+  "request": {
+    "skus": [
+      "62812.00BGE",
+      "N704P328549A",
+      "N704P331022K",
+      "N704P331024K",
+      "N707P170347W",
+      "N707P349811B",
+      "N710P330975Y",
+      "N715P364059N",
+      "N721P351937D",
+      "N721S000046B",
+      "N721S000046K",
+      "N721S000052K",
+      "N721S000056K",
+      "N726P203164O",
+      "N729P000008B",
+      "N729P000008E",
+      "N729P000008K",
+      "N729P170388D",
+      "N729P170388F",
+      "N729P170390B",
+      "N729P183716B",
+      "N729P183716E",
+      "N729P192077B",
+      "N729P192077E",
+      "N729P192077F",
+      "N729P192077K",
+      "N729P292170B",
+      "N729P292170K",
+      "N729P299363E",
+      "N729P299363K",
+      "N729P299505B",
+      "N729P299505E",
+      "N729P299505F",
+      "N729P299505K",
+      "N729P321376F",
+      "N729P321376K",
+      "N729P321378B",
+      "N729P321378K",
+      "N729P335604O",
+      "N733P279096K",
+      "N733S363650K",
+      "N735P180224B",
+      "N735P180224K",
+      "N735P277387K",
+      "N760P285734G",
+      "N817P286004G",
+      "N817P286004W",
+      "N817P296130N",
+      "N817P296130W",
+      "N817P296140N"
+    ],
+    "count": 50
+  },
+  "response": {
+    "total_items": 51,
+    "unique_skus": 50,
+    "duplicates": 1,
+    "data": [
+      {
+        "sku": "62812.00BGE",
+        "currency": "USD",
+        "price": 372.75,
+        "shippingFee": 123.06,
+        "shippingFeeRange": {
+          "minAmount": 123.06,
+          "maxAmount": 123.06
+        },
+        "exclusivePrice": null,
+        "discountedPrice": 260,
+        "promotionFrom": "2025-11-01 00:00:00",
+        "promotionTo": "2025-11-30 23:59:59",
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "NH-Ocean Furniture",
+          "sellerType": "GENERAL",
+          "gigaIndex": "72.32",
+          "sellerCode": "N763",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "High",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N704P328549A",
+        "currency": "USD",
+        "price": 175,
+        "shippingFee": 64.94,
+        "shippingFeeRange": {
+          "minAmount": 64.94,
+          "maxAmount": 64.94
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "GO",
+          "sellerType": "GENERAL",
+          "gigaIndex": "83.04",
+          "sellerCode": "N704",
+          "sellerReturnRate": "Moderate",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "High"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N704P331022K",
+        "currency": "USD",
+        "price": 140,
+        "shippingFee": 62.18,
+        "shippingFeeRange": {
+          "minAmount": 62.18,
+          "maxAmount": 62.18
+        },
+        "exclusivePrice": null,
+        "discountedPrice": 115,
+        "promotionFrom": "2025-10-15 00:00:00",
+        "promotionTo": "2025-11-30 23:59:59",
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "GO",
+          "sellerType": "GENERAL",
+          "gigaIndex": "83.04",
+          "sellerCode": "N704",
+          "sellerReturnRate": "Moderate",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "High"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N704P331024K",
+        "currency": "USD",
+        "price": 130,
+        "shippingFee": 62.59,
+        "shippingFeeRange": {
+          "minAmount": 62.59,
+          "maxAmount": 62.59
+        },
+        "exclusivePrice": null,
+        "discountedPrice": 80,
+        "promotionFrom": "2025-10-15 00:00:00",
+        "promotionTo": "2025-11-30 23:59:59",
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "GO",
+          "sellerType": "GENERAL",
+          "gigaIndex": "83.04",
+          "sellerCode": "N704",
+          "sellerReturnRate": "Moderate",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "High"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N707P170347W",
+        "currency": "USD",
+        "price": 170,
+        "shippingFee": 64.94,
+        "shippingFeeRange": {
+          "minAmount": 64.94,
+          "maxAmount": 64.94
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "K&K Store",
+          "sellerType": "GENERAL",
+          "gigaIndex": "84.48",
+          "sellerCode": "N707",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "Moderate"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 165,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 160,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 30,
+            "price": 165
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N707P349811B",
+        "currency": "USD",
+        "price": 170,
+        "shippingFee": 65.74,
+        "shippingFeeRange": {
+          "minAmount": 65.74,
+          "maxAmount": 65.74
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "K&K Store",
+          "sellerType": "GENERAL",
+          "gigaIndex": "84.48",
+          "sellerCode": "N707",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "Moderate"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 165,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 160,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 16,
+            "maxQuantity": 20,
+            "price": 155,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 167
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 162
+          },
+          {
+            "minQuantity": 16,
+            "maxQuantity": 20,
+            "price": 157
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N710P330975Y",
+        "currency": "USD",
+        "price": 145,
+        "shippingFee": 39.25,
+        "shippingFeeRange": {
+          "minAmount": 39.25,
+          "maxAmount": 39.25
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "MRS",
+          "sellerType": "GENERAL",
+          "gigaIndex": "82.51",
+          "sellerCode": "N710",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "Moderate"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 15,
+            "price": 140,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 15,
+            "price": 140
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N715P364059N",
+        "currency": "USD",
+        "price": 130,
+        "shippingFee": 20.15,
+        "shippingFeeRange": {
+          "minAmount": 20.15,
+          "maxAmount": 20.15
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "TREXM",
+          "sellerType": "GENERAL",
+          "gigaIndex": "80.50",
+          "sellerCode": "N715",
+          "sellerReturnRate": "Moderate",
+          "sellerReturnApprovalRate": "High",
+          "sellerMessageResponseRate": "Low"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 4,
+            "maxQuantity": 7,
+            "price": 120,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 8,
+            "maxQuantity": 12,
+            "price": 110,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 5,
+            "price": 100
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N721P351937D",
+        "currency": "USD",
+        "price": 145,
+        "shippingFee": 45.93,
+        "shippingFeeRange": {
+          "minAmount": 45.93,
+          "maxAmount": 45.93
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "On-Trend",
+          "sellerType": "GENERAL",
+          "gigaIndex": "81.67",
+          "sellerCode": "N721",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "High"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 9,
+            "maxQuantity": 12,
+            "price": 135,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N721S000046B",
+        "currency": "USD",
+        "price": 420,
+        "shippingFee": 161.72,
+        "shippingFeeRange": {
+          "minAmount": 161.72,
+          "maxAmount": 161.72
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "On-Trend",
+          "sellerType": "GENERAL",
+          "gigaIndex": "81.67",
+          "sellerCode": "N721",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "High"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N721S000046K",
+        "currency": "USD",
+        "price": 420,
+        "shippingFee": 161.72,
+        "shippingFeeRange": {
+          "minAmount": 161.72,
+          "maxAmount": 161.72
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "On-Trend",
+          "sellerType": "GENERAL",
+          "gigaIndex": "81.67",
+          "sellerCode": "N721",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "High"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 9,
+            "maxQuantity": 12,
+            "price": 400,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N721S000052K",
+        "currency": "USD",
+        "price": 360,
+        "shippingFee": 122.04,
+        "shippingFeeRange": {
+          "minAmount": 122.04,
+          "maxAmount": 122.04
+        },
+        "exclusivePrice": null,
+        "discountedPrice": 260,
+        "promotionFrom": "2025-10-30 00:00:00",
+        "promotionTo": "2025-11-30 23:59:59",
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "On-Trend",
+          "sellerType": "GENERAL",
+          "gigaIndex": "81.67",
+          "sellerCode": "N721",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "High"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N721S000056K",
+        "currency": "USD",
+        "price": 195,
+        "shippingFee": 74.75,
+        "shippingFeeRange": {
+          "minAmount": 74.75,
+          "maxAmount": 74.75
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "On-Trend",
+          "sellerType": "GENERAL",
+          "gigaIndex": "81.67",
+          "sellerCode": "N721",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "High"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N726P203164O",
+        "currency": "USD",
+        "price": 110,
+        "shippingFee": 17.75,
+        "shippingFeeRange": {
+          "minAmount": 17.75,
+          "maxAmount": 17.75
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": 0,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "FABULOUS",
+          "sellerType": "GENERAL",
+          "gigaIndex": "62.29",
+          "sellerCode": "N726",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "High",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 4,
+            "maxQuantity": 10,
+            "price": 95,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 20,
+            "price": 90,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 21,
+            "maxQuantity": 35,
+            "price": 86,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 2,
+            "maxQuantity": 10,
+            "price": 96
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 20,
+            "price": 94
+          },
+          {
+            "minQuantity": 21,
+            "maxQuantity": 35,
+            "price": 90
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P000008B",
+        "currency": "USD",
+        "price": 358,
+        "shippingFee": 96.26,
+        "shippingFeeRange": {
+          "minAmount": 96.26,
+          "maxAmount": 96.26
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": 0,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 2,
+            "maxQuantity": 5,
+            "price": 298
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P000008E",
+        "currency": "USD",
+        "price": 358,
+        "shippingFee": 96.26,
+        "shippingFeeRange": {
+          "minAmount": 96.26,
+          "maxAmount": 96.26
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": 0,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 2,
+            "maxQuantity": 5,
+            "price": 298
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P000008K",
+        "currency": "USD",
+        "price": 358,
+        "shippingFee": 96.26,
+        "shippingFeeRange": {
+          "minAmount": 96.26,
+          "maxAmount": 96.26
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": 0,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 2,
+            "maxQuantity": 5,
+            "price": 298
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P000008K",
+        "currency": "USD",
+        "price": null,
+        "shippingFee": null,
+        "shippingFeeRange": {
+          "minAmount": null,
+          "maxAmount": null
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Victory Furniture",
+          "sellerType": "GENERAL",
+          "gigaIndex": "81.94",
+          "sellerCode": "N848",
+          "sellerReturnRate": "Moderate",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": null,
+        "rebatesPrice": null,
+        "marginPrice": null,
+        "skuAvailable": false,
+        "futurePrice": null
+      },
+      {
+        "sku": "N729P170388D",
+        "currency": "USD",
+        "price": 149,
+        "shippingFee": 38.8,
+        "shippingFeeRange": {
+          "minAmount": 38.8,
+          "maxAmount": 38.8
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 114,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 109,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 2,
+            "maxQuantity": 5,
+            "price": 139
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P170388F",
+        "currency": "USD",
+        "price": 149,
+        "shippingFee": 38.8,
+        "shippingFeeRange": {
+          "minAmount": 38.8,
+          "maxAmount": 38.8
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 114,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 109,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 2,
+            "maxQuantity": 5,
+            "price": 139
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P170390B",
+        "currency": "USD",
+        "price": 149,
+        "shippingFee": 39.1,
+        "shippingFeeRange": {
+          "minAmount": 39.1,
+          "maxAmount": 39.1
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 114,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 109,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 2,
+            "maxQuantity": 5,
+            "price": 139
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P183716B",
+        "currency": "USD",
+        "price": 199,
+        "shippingFee": 48.13,
+        "shippingFeeRange": {
+          "minAmount": 48.13,
+          "maxAmount": 48.13
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": 0,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 2,
+            "maxQuantity": 5,
+            "price": 189
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P183716E",
+        "currency": "USD",
+        "price": 199,
+        "shippingFee": 48.13,
+        "shippingFeeRange": {
+          "minAmount": 48.13,
+          "maxAmount": 48.13
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": 0,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 2,
+            "maxQuantity": 5,
+            "price": 189
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P192077B",
+        "currency": "USD",
+        "price": 159,
+        "shippingFee": 44.5,
+        "shippingFeeRange": {
+          "minAmount": 44.5,
+          "maxAmount": 44.5
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 125,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 119,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 130
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 125
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P192077E",
+        "currency": "USD",
+        "price": 159,
+        "shippingFee": 44.5,
+        "shippingFeeRange": {
+          "minAmount": 44.5,
+          "maxAmount": 44.5
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 125,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 119,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 130
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 125
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P192077F",
+        "currency": "USD",
+        "price": 159,
+        "shippingFee": 44.5,
+        "shippingFeeRange": {
+          "minAmount": 44.5,
+          "maxAmount": 44.5
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 125,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 119,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 130
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 125
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P192077K",
+        "currency": "USD",
+        "price": 159,
+        "shippingFee": 44.5,
+        "shippingFeeRange": {
+          "minAmount": 44.5,
+          "maxAmount": 44.5
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 125,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 119,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 130
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 125
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P292170B",
+        "currency": "USD",
+        "price": 199,
+        "shippingFee": 48.13,
+        "shippingFeeRange": {
+          "minAmount": 48.13,
+          "maxAmount": 48.13
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 149,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 139,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 155
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 145
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P292170K",
+        "currency": "USD",
+        "price": 199,
+        "shippingFee": 48.13,
+        "shippingFeeRange": {
+          "minAmount": 48.13,
+          "maxAmount": 48.13
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 149,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 139,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 155
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 145
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P299363E",
+        "currency": "USD",
+        "price": 209,
+        "shippingFee": 53.98,
+        "shippingFeeRange": {
+          "minAmount": 53.98,
+          "maxAmount": 53.98
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 179,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 169,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 2,
+            "maxQuantity": 5,
+            "price": 199
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P299363K",
+        "currency": "USD",
+        "price": 209,
+        "shippingFee": 53.98,
+        "shippingFeeRange": {
+          "minAmount": 53.98,
+          "maxAmount": 53.98
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 179,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 169,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 184
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 174
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P299505B",
+        "currency": "USD",
+        "price": 169,
+        "shippingFee": 48.13,
+        "shippingFeeRange": {
+          "minAmount": 48.13,
+          "maxAmount": 48.13
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 129,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 125,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 135
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 130
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P299505E",
+        "currency": "USD",
+        "price": 169,
+        "shippingFee": 48.13,
+        "shippingFeeRange": {
+          "minAmount": 48.13,
+          "maxAmount": 48.13
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 129,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 125,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 135
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 130
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P299505F",
+        "currency": "USD",
+        "price": 169,
+        "shippingFee": 48.13,
+        "shippingFeeRange": {
+          "minAmount": 48.13,
+          "maxAmount": 48.13
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 129,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 125,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 135
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 130
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P299505K",
+        "currency": "USD",
+        "price": 169,
+        "shippingFee": 48.13,
+        "shippingFeeRange": {
+          "minAmount": 48.13,
+          "maxAmount": 48.13
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 129,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 125,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 135
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 130
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P321376F",
+        "currency": "USD",
+        "price": 209,
+        "shippingFee": 55.99,
+        "shippingFeeRange": {
+          "minAmount": 55.99,
+          "maxAmount": 55.99
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 189,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 179,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 189
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 184
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P321376K",
+        "currency": "USD",
+        "price": 209,
+        "shippingFee": 55.99,
+        "shippingFeeRange": {
+          "minAmount": 55.99,
+          "maxAmount": 55.99
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 189,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 179,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 189
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 184
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P321378B",
+        "currency": "USD",
+        "price": 189,
+        "shippingFee": 51.09,
+        "shippingFeeRange": {
+          "minAmount": 51.09,
+          "maxAmount": 51.09
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 165,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 155,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 169
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 159
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P321378K",
+        "currency": "USD",
+        "price": 189,
+        "shippingFee": 51.09,
+        "shippingFeeRange": {
+          "minAmount": 51.09,
+          "maxAmount": 51.09
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 165,
+            "discountedSpotPrice": null
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 155,
+            "discountedSpotPrice": null
+          }
+        ],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 169
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 15,
+            "price": 159
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N729P335604O",
+        "currency": "USD",
+        "price": 109,
+        "shippingFee": 39.25,
+        "shippingFeeRange": {
+          "minAmount": 39.25,
+          "maxAmount": 39.25
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Vstory",
+          "sellerType": "GENERAL",
+          "gigaIndex": "79.27",
+          "sellerCode": "N729",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 2,
+            "maxQuantity": 5,
+            "price": 99
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N733P279096K",
+        "currency": "USD",
+        "price": 199,
+        "shippingFee": 61.46,
+        "shippingFeeRange": {
+          "minAmount": 61.46,
+          "maxAmount": 61.46
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Homey Life",
+          "sellerType": "GENERAL",
+          "gigaIndex": "75.21",
+          "sellerCode": "N733",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "Moderate"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 9,
+            "price": 179
+          },
+          {
+            "minQuantity": 10,
+            "maxQuantity": 20,
+            "price": 175
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N733S363650K",
+        "currency": "USD",
+        "price": 199,
+        "shippingFee": 78.25,
+        "shippingFeeRange": {
+          "minAmount": 78.25,
+          "maxAmount": 78.25
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Homey Life",
+          "sellerType": "GENERAL",
+          "gigaIndex": "75.21",
+          "sellerCode": "N733",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "Moderate"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 184
+          },
+          {
+            "minQuantity": 11,
+            "maxQuantity": 20,
+            "price": 180
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N735P180224B",
+        "currency": "USD",
+        "price": 130,
+        "shippingFee": 36.38,
+        "shippingFeeRange": {
+          "minAmount": 36.38,
+          "maxAmount": 36.38
+        },
+        "exclusivePrice": null,
+        "discountedPrice": 50,
+        "promotionFrom": "2025-06-01 08:00:00",
+        "promotionTo": "2025-11-30 22:59:59",
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Changes",
+          "sellerType": "GENERAL",
+          "gigaIndex": "68.42",
+          "sellerCode": "N735",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 60
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N735P180224K",
+        "currency": "USD",
+        "price": 130,
+        "shippingFee": 36.38,
+        "shippingFeeRange": {
+          "minAmount": 36.38,
+          "maxAmount": 36.38
+        },
+        "exclusivePrice": null,
+        "discountedPrice": 50,
+        "promotionFrom": "2025-06-01 08:00:00",
+        "promotionTo": "2025-11-30 22:59:59",
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Changes",
+          "sellerType": "GENERAL",
+          "gigaIndex": "68.42",
+          "sellerCode": "N735",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 60
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N735P277387K",
+        "currency": "USD",
+        "price": 170,
+        "shippingFee": 34.39,
+        "shippingFeeRange": {
+          "minAmount": 34.39,
+          "maxAmount": 34.39
+        },
+        "exclusivePrice": null,
+        "discountedPrice": 70,
+        "promotionFrom": "2025-06-17 16:00:00",
+        "promotionTo": "2025-11-30 22:59:59",
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "Changes",
+          "sellerType": "GENERAL",
+          "gigaIndex": "68.42",
+          "sellerCode": "N735",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "Moderate",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [
+          {
+            "minQuantity": 5,
+            "maxQuantity": 10,
+            "price": 140
+          }
+        ],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N760P285734G",
+        "currency": "USD",
+        "price": 320,
+        "shippingFee": 138.23,
+        "shippingFeeRange": {
+          "minAmount": 138.23,
+          "maxAmount": 138.23
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "NH-Mirod",
+          "sellerType": "GENERAL",
+          "gigaIndex": "77.38",
+          "sellerCode": "N760",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "High",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N817P286004G",
+        "currency": "USD",
+        "price": 699,
+        "shippingFee": 148.0,
+        "shippingFeeRange": {
+          "minAmount": 148,
+          "maxAmount": 148
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "NH-ECHO",
+          "sellerType": "GENERAL",
+          "gigaIndex": "70.94",
+          "sellerCode": "N817",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "High",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N817P286004W",
+        "currency": "USD",
+        "price": 699,
+        "shippingFee": 148.0,
+        "shippingFeeRange": {
+          "minAmount": 148,
+          "maxAmount": 148
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "NH-ECHO",
+          "sellerType": "GENERAL",
+          "gigaIndex": "70.94",
+          "sellerCode": "N817",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "High",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N817P296130N",
+        "currency": "USD",
+        "price": 549,
+        "shippingFee": 101.15,
+        "shippingFeeRange": {
+          "minAmount": 101.15,
+          "maxAmount": 101.15
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "NH-ECHO",
+          "sellerType": "GENERAL",
+          "gigaIndex": "70.94",
+          "sellerCode": "N817",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "High",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N817P296130W",
+        "currency": "USD",
+        "price": 549,
+        "shippingFee": 101.15,
+        "shippingFeeRange": {
+          "minAmount": 101.15,
+          "maxAmount": 101.15
+        },
+        "exclusivePrice": null,
+        "discountedPrice": null,
+        "promotionFrom": null,
+        "promotionTo": null,
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "NH-ECHO",
+          "sellerType": "GENERAL",
+          "gigaIndex": "70.94",
+          "sellerCode": "N817",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "High",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [],
+        "skuAvailable": true,
+        "futurePrice": []
+      },
+      {
+        "sku": "N817P296140N",
+        "currency": "USD",
+        "price": 559,
+        "shippingFee": 86.05,
+        "shippingFeeRange": {
+          "minAmount": 86.05,
+          "maxAmount": 86.05
+        },
+        "exclusivePrice": null,
+        "discountedPrice": 515,
+        "promotionFrom": "2025-11-01 00:00:00",
+        "promotionTo": "2025-12-01 23:59:59",
+        "mapPrice": null,
+        "futureMapPrice": null,
+        "effectMapTime": null,
+        "sellerInfo": {
+          "sellerStore": "NH-ECHO",
+          "sellerType": "GENERAL",
+          "gigaIndex": "70.94",
+          "sellerCode": "N817",
+          "sellerReturnRate": "Low",
+          "sellerReturnApprovalRate": "High",
+          "sellerMessageResponseRate": "N/A"
+        },
+        "spotPrice": [],
+        "rebatesPrice": [],
+        "marginPrice": [],
+        "skuAvailable": true,
+        "futurePrice": []
+      }
+    ]
+  },
+  "analysis": {
+    "sku_counts": {
+      "62812.00BGE": 1,
+      "N704P328549A": 1,
+      "N704P331022K": 1,
+      "N704P331024K": 1,
+      "N707P170347W": 1,
+      "N707P349811B": 1,
+      "N710P330975Y": 1,
+      "N715P364059N": 1,
+      "N721P351937D": 1,
+      "N721S000046B": 1,
+      "N721S000046K": 1,
+      "N721S000052K": 1,
+      "N721S000056K": 1,
+      "N726P203164O": 1,
+      "N729P000008B": 1,
+      "N729P000008E": 1,
+      "N729P000008K": 2,
+      "N729P170388D": 1,
+      "N729P170388F": 1,
+      "N729P170390B": 1,
+      "N729P183716B": 1,
+      "N729P183716E": 1,
+      "N729P192077B": 1,
+      "N729P192077E": 1,
+      "N729P192077F": 1,
+      "N729P192077K": 1,
+      "N729P292170B": 1,
+      "N729P292170K": 1,
+      "N729P299363E": 1,
+      "N729P299363K": 1,
+      "N729P299505B": 1,
+      "N729P299505E": 1,
+      "N729P299505F": 1,
+      "N729P299505K": 1,
+      "N729P321376F": 1,
+      "N729P321376K": 1,
+      "N729P321378B": 1,
+      "N729P321378K": 1,
+      "N729P335604O": 1,
+      "N733P279096K": 1,
+      "N733S363650K": 1,
+      "N735P180224B": 1,
+      "N735P180224K": 1,
+      "N735P277387K": 1,
+      "N760P285734G": 1,
+      "N817P286004G": 1,
+      "N817P286004W": 1,
+      "N817P296130N": 1,
+      "N817P296130W": 1,
+      "N817P296140N": 1
+    },
+    "duplicate_skus": [
+      "N729P000008K"
+    ]
+  }
+}

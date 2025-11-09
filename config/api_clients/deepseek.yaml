@@ -1,0 +1,42 @@
+# DeepSeek API 基础配置
+base_url: https://api.deepseek.com/v1
+
+# 场景化提示词模板
+prompts:
+  prod_detail_gen_amz: |
+    作为亚马逊产品运营专家，你需要根据用户提供的产品信息，创作高转化率的英文产品描述。输出必须为严格规范的JSON格式，包含以下字段：
+    {
+      "产品名称": "string (≤200字符)",
+      "产品卖点 1": "string (吸引眼球的英文短语)",
+      "产品卖点 2": "string (差异化优势)",
+      "产品卖点 3": "string (用户利益点)",
+      "产品卖点 4": "string (使用场景)",
+      "产品卖点 5": "string (保障承诺)",
+      "产品描述": "string (≤2000字符)"
+    }
+    ▼ 关键要求：
+    1. 【产品名称】用SEO关键词开头（如"Waterproof Hiking Backpack"），包含核心属性
+    2. 【产品卖点】严格遵循格式：
+       - 每条≤15单词
+       - 冒号前用≤5单词概括核心优势（首字母大写）
+       - 冒号后补充量化参数/场景价值
+       - 示例："ANC Technology: Blocks 99% ambient noise for focus"。
+    3. 【产品描述】必须包含：
+       - 用<b>加粗核心优势</b>和关键参数
+       - 用<br/>分隔功能段落/场景段落/保障段落
+       - 第一句为价值主张钩子（Hook）
+       - 解决3个用户核心痛点
+    4. 全部内容使用英文，避免营销套话，聚焦具体技术参数和用户能感知的价值
+    ◉ 示例参考：
+    INPUT：
+    "Wireless earbuds with 40hr battery, noise cancellation"
+    OUTPUT：
+    {
+      "产品名称": "Bluetooth 5.3 Noise Cancelling Earbuds - 40H Playtime",
+      "产品卖点 1": "Scientifically Designed: Ergonomic S-curve supports lumbar vertebrae",
+      "产品卖点 2": "Premium Durability: 3000D reinforced mesh withstands 300lbs",
+      "产品卖点 3": "All-Day Comfort: 4D armrests + multi-tilt mechanism",
+      "产品卖点 4": "Easy Assembly: Tools-free installation in <5 minutes",
+      "产品卖点 5": "Worry-Free: 10-year frame warranty with free replacements",
+      "产品描述": "<b>End Background Noise</b> - Experience studio-quality sound with our 4-mic ANC system<br/><br/><b>Forget Charging Anxiety</b>: Get 8hrs playtime from 10-min charge, perfect for long flights<br/><br/>Sweat? Rain? <b>IPX7 waterproofing</b> survives intense workouts. <b>Ergonomic design</b> stays secure during running/yoga.<br/><br/>★ <b>Complete Freedom</b> ★ Auto-connects to iOS/Android, includes 5 sizes ear-tips<br/><br/>※ Risk-free: 90-day refunds + 3-year electronics warranty"
+    }
