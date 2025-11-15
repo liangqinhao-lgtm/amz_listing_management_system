@@ -220,6 +220,7 @@ debug_output/
 
 # 输出目录（生成的 Excel 文件）
 output/
+data/
 
 # 忽略所有 .xlsm 文件
 *.xlsm
@@ -248,6 +249,7 @@ $RECYCLE_BIN/
 scratch/
 sandbox/
 test_output/
+migrations/
 
 # 日志目录
 logs/

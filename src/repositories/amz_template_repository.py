@@ -29,6 +29,96 @@ class AmzTemplateRepository:
         """
         self.db = db
     
+    # ========================================================================
+    # 数据保存方法
+    # ========================================================================
+    
+    def save_parsed_data(
+        self, 
+        category: str, 
+        template_name: str, 
+        results: Dict[str, Any]
+    ) -> Optional[int]:
+        """
+        保存解析结果到数据库
+        
+        Args:
+            category: 品类名称
+            template_name: 模板文件名
+            results: 从解析器和服务层获取的完整结果字典，包含：
+                - fields: 字段列表
+                - field_definitions: 字段定义
+                - valid_values: 有效值
+                - variation_mapping: 变体映射
+                - priority_themes: 优先级主题
+                
+        Returns:
+            插入的记录ID，如果失败则返回None
+        """
+        insert_query = text("""
+            INSERT INTO amazon_cat_templates
+            (
+                category, 
+                template_name, 
+                fields, 
+                field_definitions, 
+                valid_values, 
+                variation_mapping, 
+                priority_themes, 
+                created_at
+            )
+            VALUES (
+                :category, 
+                :template_name, 
+                :fields, 
+                :field_defs, 
+                :valid_values, 
+                :variation_mapping, 
+                :priority_themes, 
+                NOW()
+            ) 
+            RETURNING id;
+        """)
+
+        try:
+            # 将数据结构转换为JSON字符串
+            fields_json = json.dumps(results.get("fields", []))
+            field_defs_json = json.dumps(results.get("field_definitions", {}))
+            valid_values_json = json.dumps(results.get("valid_values", []))
+            variation_mapping_json = json.dumps(
+                results.get("variation_mapping", {})
+            )
+            priority_themes_json = json.dumps(
+                results.get("priority_themes", [])
+            )
+
+            result = self.db.execute(insert_query, {
+                "category": category,
+                "template_name": template_name,
+                "fields": fields_json,
+                "field_defs": field_defs_json,
+                "valid_values": valid_values_json,
+                "variation_mapping": variation_mapping_json,
+                "priority_themes": priority_themes_json
+            })
+
+            inserted_id = result.scalar_one()
+            self.db.commit()
+
+            logger.info(
+                f"✅ 解析结果已成功保存到数据库。记录ID: {inserted_id}"
+            )
+            return inserted_id
+
+        except Exception as e:
+            logger.exception(f"❌ 保存数据到数据库时发生错误: {e}")
+            self.db.rollback()
+            return None
+    
+    # ========================================================================
+    # 数据查询方法
+    # ========================================================================
+    
     def find_template_by_category(self, category_name: str) -> Optional[Dict[str, Any]]:
         """
         根据品类名称查询最新的模板规则
