@@ -1,0 +1,17 @@
+{
+  "//": "This file maps internal business categories to specific, deterministic Amazon attributes.",
+  "version": "1.0",
+  "category_details": {
+    "BATHROOM_VANITIES": {
+      "item_type_keyword": "bathroom-vanity-cabinets",
+      "//": "In the future, we can add more deterministic fields here, e.g., 'department_name': 'furniture'"
+    },
+    "HOME_MIRROR": {
+      "item_type_keyword": "wall-mounted-mirrors"
+    },
+    "CABINET": {
+      "item_type_keyword": "Tools & Home Improvement > Kitchen & Bath Fixtures > Bathroom Fixtures > Bathroom Sink Vanities & Accessories > Bathroom Vanities"
+    },
+    "//": "As you add more internal categories, add their mappings here."
+  }
+}

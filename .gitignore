@@ -206,7 +206,6 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-
 # 测试脚本
 test_*.py
 debug_*.py
@@ -214,3 +213,42 @@ debug_*.py
 # 测试数据
 data/test/
 debug_output/
+
+# ======================================================================
+# Amazon Listing Management System - Project Specific
+# ======================================================================
+
+# 输出目录（生成的 Excel 文件）
+output/
+
+# 忽略所有 .xlsm 文件
+*.xlsm
+
+# 但保留模板文件！（重要）
+!template_files/*.xlsm
+
+# 临时文件和备份
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+
+# 操作系统文件
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE_BIN/
+
+# 项目临时目录
+scratch/
+sandbox/
+test_output/
+
+# 日志目录
+logs/
+*.log.*
