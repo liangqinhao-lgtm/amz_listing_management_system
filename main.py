@@ -76,6 +76,8 @@ def print_menu():
     print("  3.1 列出所有可用品类")
     print("  3.2 解析新的亚马逊类目模板到数据库")
     print("  3.3 从亚马逊报错文件自动矫正模板规则")
+    print("  3.4 更新需要维护的品类(来自Giga) ⭐")
+    print("  3.5 从CSV批量更新品类映射 ⭐")
     print("\n【4】系统维护")
     print("  4.1 从CSV批量同步SKU映射 🚧 (待实现)")
     print("\n【5】亚马逊运营每日常规 ⭐")
@@ -460,6 +462,7 @@ def handle_list_categories(db: Session):
             FROM supplier_categories_map
             WHERE supplier_platform = 'giga'
               AND standard_category_name IS NOT NULL
+              AND standard_category_name != ''
             ORDER BY standard_category_name;
         """)
         
@@ -559,6 +562,139 @@ def handle_template_correction(db: Session):
         logging.exception("详细错误:")
 
 
+def handle_sync_giga_categories(db: Session):
+    """3.4 更新需要维护的品类(来自Giga)"""
+    from src.services.category_maintenance_service import CategoryMaintenanceService
+    
+    logger.info("🚀 启动Giga品类同步流程...")
+    print("\n" + "="*70)
+    print("🔄 更新需要维护的品类(来自Giga)")
+    print("="*70)
+    
+    print("\n功能说明:")
+    print("  1. 从 giga_product_sync_records 查询所有品类代码")
+    print("  2. 对比 supplier_categories_map 中已存在的映射")
+    print("  3. 将新品类插入到映射表中")
+    print("  4. standard_category_name 留空，待后续手动维护")
+    print()
+    
+    try:
+        # 询问用户是否继续
+        confirm = input("是否继续执行? (y/n): ").strip().lower()
+        if confirm != 'y':
+            print("\n❌ 操作已取消")
+            print("="*70)
+            return
+        
+        # 执行同步
+        service = CategoryMaintenanceService(db)
+        result = service.sync_giga_categories()
+        
+        # 根据结果决定是否导出待维护列表
+        if result.get('inserted_count', 0) > 0:
+            print()
+            export = input("是否导出新增品类列表到CSV文件? (y/n): ").strip().lower()
+            if export == 'y':
+                export_new_categories(result.get('new_category_list', []))
+        
+    except Exception as e:
+        print(f"\n❌ 品类同步失败: {e}")
+        logging.exception("详细错误:")
+
+
+def export_new_categories(categories: List[Dict]):
+    """
+    导出新增品类列表到 CSV 文件
+    
+    Args:
+        categories: 新增的品类列表
+    """
+    import csv
+    
+    if not categories:
+        print("⚠️  没有新品类需要导出")
+        return
+    
+    # 创建输出目录
+    output_dir = os.path.join(os.path.dirname(__file__), 'output')
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # 生成文件名
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    filename = f"new_giga_categories_{timestamp}.csv"
+    filepath = os.path.join(output_dir, filename)
+    
+    try:
+        # 写入 CSV
+        with open(filepath, 'w', newline='', encoding='utf-8-sig') as f:
+            writer = csv.DictWriter(
+                f, 
+                fieldnames=['category_code', 'category_name', 'standard_category_name']
+            )
+            writer.writeheader()
+            
+            for cat in categories:
+                writer.writerow({
+                    'category_code': cat['category_code'],
+                    'category_name': cat['category_name'],
+                    'standard_category_name': ''  # 待维护
+                })
+        
+        print(f"\n✅ 新品类列表已导出到: {filepath}")
+        print("   请在此文件中填写 standard_category_name，然后可以批量导入")
+        
+    except Exception as e:
+        print(f"❌ 导出失败: {e}")
+
+
+def handle_update_mappings_from_csv(db: Session):
+    """3.5 从CSV批量更新品类映射"""
+    from src.services.category_maintenance_service import CategoryMaintenanceService
+    
+    logger.info("🚀 启动从CSV批量更新品类映射流程...")
+    print("\n" + "=" * 70)
+    print("📥 从 CSV 批量更新品类映射")
+    print("=" * 70)
+    
+    print("\n📋 CSV 文件格式说明:")
+    print("   必需字段（请严格按照以下字段名，区分大小写）:")
+    print("   1. supplier_platform       - 供应商平台 (如: giga)")
+    print("   2. supplier_category_code  - 供应商品类代码")
+    print("   3. standard_category_name  - 标准品类名称")
+    print()
+    print("   示例 CSV 内容:")
+    print("   supplier_platform,supplier_category_code,standard_category_name")
+    print("   giga,CAB001,cabinet")
+    print("   giga,TAB100,dining_table")
+    print("   giga,MIR300,home_mirror")
+    print()
+    print("   ⚠️  注意事项:")
+    print("   - standard_category_name 必须是系统中已存在的亚马逊品类")
+    print("   - 只会更新 supplier_platform + supplier_category_code 匹配的记录")
+    print("   - 不匹配的记录不会更新")
+    print()
+    
+    try:
+        # 获取文件路径
+        csv_file_path = input("请输入 CSV 文件路径: ").strip().strip('"')
+        
+        if not csv_file_path:
+            print("\n❌ 未提供文件路径，操作取消")
+            print("=" * 70)
+            return
+        
+        # 执行更新
+        service = CategoryMaintenanceService(db)
+        result = service.update_mappings_from_csv(csv_file_path)
+        
+        print()
+        print("=" * 70)
+        
+    except Exception as e:
+        print(f"\n❌ 批量更新失败: {e}")
+        logging.exception("详细错误:")
+
+
 # ========================================================================
 # 系统维护功能
 # ========================================================================
@@ -649,6 +785,10 @@ def main():
                     handle_template_update(db)
                 elif choice == "3.3":
                     handle_template_correction(db)
+                elif choice == "3.4":
+                    handle_sync_giga_categories(db)
+                elif choice == "3.5":
+                    handle_update_mappings_from_csv(db)
                 
                 # 【4】系统维护
                 elif choice == "4.1":

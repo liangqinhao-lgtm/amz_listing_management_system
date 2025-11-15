@@ -148,18 +148,14 @@ class InventoryPriceUpdaterService:
             df = df[column_order]
 
             # 处理NaN/None值，确保空字段是真正的空字符串
-            df.fillna('', inplace=True)
+            df = df.fillna('')
 
-            # 确保 quantity 是整数，如果是空则保持空
+            # ✅ 修复：正确处理 quantity 列的数据类型转换
+            # 先转换为数值，然后转为字符串，没有库存信息的显示为 0
             df['quantity'] = (
-                pd.to_numeric(df['quantity'], errors='coerce')
-                .astype('Int64')
-                .fillna('')
-                .astype(str)
+                pd.to_numeric(df['quantity'], errors='coerce')  # 转换为数值，无效值变为 NaN
+                .apply(lambda x: '0' if pd.isna(x) else str(int(x)))  # NaN 变 '0'，其他转整数再转字符串
             )
-            
-            # 替换 '<NA>' 为空字符串
-            df['quantity'] = df['quantity'].replace('<NA>', '')
 
             # 文件保存路径
             output_dir = os.path.join(
