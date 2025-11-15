@@ -227,43 +227,43 @@ class CategoryRepository:
             return set()
     
     def batch_update_category_mappings(self, updates: List[Dict]) -> int:
-    """
-    批量更新品类映射的 standard_category_name
-    
-    Args:
-        updates: 更新数据列表
-            [
-                {
-                    'supplier_platform': 'giga',
-                    'supplier_category_code': 'CAB001',
-                    'standard_category_name': 'cabinet'
-                },
-                ...
-            ]
-    
-    Returns:
-        成功更新的记录数
-    """
-    if not updates:
-        return 0
-    
-    query = text("""
-        UPDATE supplier_categories_map
-        SET standard_category_name = :standard_category_name
-        WHERE supplier_platform = :supplier_platform
-            AND supplier_category_code = :supplier_category_code;
-    """)
-    
-    try:
-        updated_count = 0
-        for update in updates:
-            result = self.db.execute(query, update)
-            updated_count += result.rowcount
+        """
+        批量更新品类映射的 standard_category_name
         
-        self.db.commit()
-        logger.info(f"Successfully updated {updated_count} category mappings")
-        return updated_count
-    except Exception as e:
-        self.db.rollback()
-        logger.error(f"Failed to batch update category mappings: {e}", exc_info=True)
-        raise
+        Args:
+            updates: 更新数据列表
+                [
+                    {
+                        'supplier_platform': 'giga',
+                        'supplier_category_code': 'CAB001',
+                        'standard_category_name': 'cabinet'
+                    },
+                    ...
+                ]
+        
+        Returns:
+            成功更新的记录数
+        """
+        if not updates:
+            return 0
+        
+        query = text("""
+            UPDATE supplier_categories_map
+            SET standard_category_name = :standard_category_name
+            WHERE supplier_platform = :supplier_platform
+                AND supplier_category_code = :supplier_category_code;
+        """)
+        
+        try:
+            updated_count = 0
+            for update in updates:
+                result = self.db.execute(query, update)
+                updated_count += result.rowcount
+            
+            self.db.commit()
+            logger.info(f"Successfully updated {updated_count} category mappings")
+            return updated_count
+        except Exception as e:
+            self.db.rollback()
+            logger.error(f"Failed to batch update category mappings: {e}", exc_info=True)
+            raise
