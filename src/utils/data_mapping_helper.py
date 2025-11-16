@@ -186,7 +186,11 @@ class DataMappingHelper:
         
         # JSONB字段
         elif source_type == "jsonb":
-            return self._get_jsonb_value(raw_data, rule.get("json_path"))
+            value = self._get_jsonb_value(raw_data, rule.get("json_path"))
+            if value in (None, "", "Not Applicable"):
+                fallback = rule.get("fallback")
+                return fallback if fallback is not None else value
+            return value
         
         # JSONB数组
         elif source_type == "jsonb_array":
