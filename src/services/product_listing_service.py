@@ -79,7 +79,8 @@ class ProductListingService:
         if config_path and config_path.exists():
             try:
                 with open(config_path, 'r', encoding='utf-8') as f:
-                    return json.load(f)
+                    config = json.load(f)
+                    return config.get("category_details", {})
             except Exception as e:
                 logger.warning(f"加载品类配置失败: {e}")
                 return None

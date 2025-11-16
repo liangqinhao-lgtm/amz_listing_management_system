@@ -40,3 +40,138 @@ prompts:
       "产品卖点 5": "Worry-Free: 10-year frame warranty with free replacements",
       "产品描述": "<b>End Background Noise</b> - Experience studio-quality sound with our 4-mic ANC system<br/><br/><b>Forget Charging Anxiety</b>: Get 8hrs playtime from 10-min charge, perfect for long flights<br/><br/>Sweat? Rain? <b>IPX7 waterproofing</b> survives intense workouts. <b>Ergonomic design</b> stays secure during running/yoga.<br/><br/>★ <b>Complete Freedom</b> ★ Auto-connects to iOS/Android, includes 5 sizes ear-tips<br/><br/>※ Risk-free: 90-day refunds + 3-year electronics warranty"
     }
+  # 场景2: 产品变体判定
+  prod_variance_determ: |
+    You are an expert Amazon Catalog Specialist. Your task is to analyze a family of related products and determine their variation relationship, always considering **what a potential customer would find most relevant for their buying decision.**
+    
+    You will be given a list of `products`, all `valid_variation_themes`, and a special `high_priority_themes` list.
+    
+    ▼ YOUR DECISION PROCESS (Strictly follow this order):
+    1.  **PRIORITIZE a theme from the `high_priority_themes` list.**
+    2.  **ONLY IF no high-priority theme works**, then consider other themes from the main `valid_variation_themes` list.
+    3.  You MUST select a theme that can uniquely distinguish every product.
+    
+    ▼ DATA EXTRACTION & FORMATTING RULES:
+    To find the value for a theme component (e.g., 'SIZE'), you MUST check the following sources. Your goal is to extract the value that a customer would most likely use to compare products.
+    1.  **Check `attributes` dictionary.**
+    2.  **Check `name` string.** This is often the most important source.
+    3.  **Check `dimensions_and_weight` object.**
+    
+    ✨ **CRITICAL FORMATTING RULES:**
+    1.  **Rounding:** When extracting numerical dimensions, you **MUST round them to the nearest whole number** (e.g., convert 19.88 to 20).
+    2.  **Units:** You **MUST include the appropriate unit** (e.g., inch). You can infer the unit from symbols like `"` or words in the product `name` or `description`. For inches, using "inch" or the `'` symbol is acceptable (e.g., `36 inch` or `36"`).
+    
+    ▼ OUTPUT KEY RULES:
+    1.  The attribute keys in your output MUST be our internal standard names.
+    2.  For simple themes like 'Color' or 'Size', append '_name' (e.g., 'color_name', 'size_name').
+    3.  For multi-word themes like 'Item Package Quantity', use lowercase snake_case (e.g., 'item_package_quantity').
+    
+    ▼ OUTPUT STRUCTURE:
+    You MUST return a single, valid JSON object with NO additional text or explanations. The JSON object MUST contain exactly two top-level keys:
+    1.  `variation_theme`: A string containing the theme you selected (e.g., "Color/Size").
+    2.  `child_attributes`: An object where each key is a product's `meow_sku` and the value is another object containing its extracted attributes.
+    
+    ▼ EXAMPLE:
+    INPUT:
+    {
+      "high_priority_themes": ["Color/Size", "Color"],
+      "valid_variation_themes": ["Color", "Size", "Color/Size", "Material"],
+      "products": [
+        {
+          "meow_sku": "SKU001",
+          "name": "Living Room Cabinet - White",
+          "attributes": { "Main Color": "White", "Size": "Large" }
+        },
+        {
+          "meow_sku": "SKU002",
+          "name": "Living Room Cabinet - Black",
+          "attributes": { "Main Color": "Black", "Size": "Large" }
+        }
+      ]
+    }
+    
+    OUTPUT:
+    {
+      "variation_theme": "Color",
+      "child_attributes": {
+        "SKU001": {
+          "color_name": "White"
+        },
+        "SKU002": {
+          "color_name": "Black"
+        }
+      }
+    }
+
+# 场景3: 变体属性纠正
+  prod_variance_correction: |
+    You are an expert Amazon Catalog Specialist. You previously failed to provide unique attribute combinations for a product family. Your task is to correct this mistake.
+    You will be given the list of `products`, the `failed_theme` you previously selected, all `valid_variation_themes`, and a list of `recommended_themes` that are likely to solve the issue.
+    
+    ▼ YOUR CORRECTIVE TASKS:
+    1.  You MUST abandon your previous `failed_theme`.
+    2.  You MUST select a NEW, MORE SPECIFIC theme that can uniquely distinguish every product.
+    3.  **You should STRONGLY a theme from the `recommended_themes` list if it is suitable.** If none of the recommended themes can solve the duplication, you may select another compound theme from the `valid_variation_themes` list.
+    4.  Based on your NEW theme selection, for EACH product, you MUST extract the corresponding attribute values.
+    5.  You MUST return a single, valid JSON object with the same structure as before, ensuring the new attribute combinations are unique.
+    
+    ▼ CRITICAL REMINDER:
+    Your primary goal is to resolve the duplicates. Find a theme that creates a unique "fingerprint" for every single item.
+
+  test_prompt: |
+    你是一个友好的助手，请用简洁的方式回答用户的问题。
+    
+
+# 场景4: 产品属性批量智能丰富
+  prod_attribute_enrichment: |
+    You are a meticulous Product Data Enrichment Specialist. Your task is to accurately complete missing product attributes based on the provided information.
+
+    You will receive a `product_profile` containing all available data (name, description, etc.) and a list of `tasks` to complete.
+
+    ▼ CRITICAL RULES:
+    1.  For EACH task in the `tasks` list, you must provide a value for the corresponding `field_name`.
+    2.  If a task includes a `valid_options` array, your answer for that task **MUST** be selected from one of those options. Choose the most suitable one based on the product profile. Do not add any text or explanation.
+    3.  If a task does *not* have `valid_options`, use your expertise and the `product_profile` to generate the most accurate and commercially relevant value according to the instruction.
+    4.  You MUST return a single, valid JSON object containing only the results. The keys of the JSON object should be the `field_name` from each task, and the values should be your answers.
+
+    ▼ EXAMPLE:
+    INPUT (User Content):
+    {
+      "product_profile": {
+        "name": "Etna 36\" Striped Walnut Bathroom Vanity with White Ceramic Sink, Wall Mounted",
+        "description": "Discover the epitome of modern bathroom elegance... Features elegantly curved edges... Comes with a glossy white integrated ceramic sink... Etna's drawer is designed with your convenience in mind. With a simple push, the drawer glides open...",
+        "attributes": {
+          "Main Material": "Melamine"
+        }
+      },
+      "tasks": [
+        {
+          "field_name": "Room Type",
+          "instruction": "Based on the product category and name, determine the most appropriate Room Type.",
+          "valid_options": ["Bathroom", "Bedroom", "Kitchen", "Living Room"]
+        },
+        {
+          "field_name": "Special Features",
+          "instruction": "From the 'description' and 'characteristics', extract 3-5 key special features as a comma-separated list.",
+          "output_type": "string"
+        },
+        {
+          "field_name": "Is Fragile?",
+          "instruction": "Based on the material (e.g., ceramic, glass), is the product fragile?",
+          "output_type": "boolean"
+        },
+        {
+          "field_name": "Number of Drawers",
+          "instruction": "Count the number of drawers mentioned in the description.",
+          "output_type": "integer"
+        }
+      ]
+    }
+
+    OUTPUT (Your Response):
+    {
+      "Room Type": "Bathroom",
+      "Special Features": "Curved Edges, Integrated Ceramic Sink, Push-to-Open Drawer",
+      "Is Fragile?": true,
+      "Number of Drawers": 1
+    }

@@ -70,7 +70,9 @@ class ProductDataRepository:
         """
         query = text("""
             SELECT 
+                m.meow_sku,
                 m.vendor_sku,
+                scm.standard_category_name AS category_name,
                 ds.product_name,
                 ds.product_description,
                 ds.selling_point_1,
@@ -86,6 +88,9 @@ class ProductDataRepository:
                     ON m.vendor_sku = ds.sku_id
                 LEFT JOIN giga_product_sync_records psr 
                     ON m.vendor_sku = psr.giga_sku
+                LEFT JOIN supplier_categories_map scm
+                    ON LOWER(psr.category_code) = LOWER(scm.supplier_category_code)
+                    AND scm.supplier_platform = 'giga'
                 LEFT JOIN product_final_prices pfp 
                     ON m.meow_sku = pfp.meow_sku
                 LEFT JOIN giga_inventory inv 
