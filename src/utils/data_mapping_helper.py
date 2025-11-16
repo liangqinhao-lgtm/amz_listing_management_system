@@ -4,6 +4,7 @@ Data Mapping Helper
 """
 import json
 import logging
+import re
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 
@@ -17,6 +18,7 @@ class DataMappingHelper:
     职责：
     - 加载和解析 amz_mapping.json 配置
     - 执行各种类型的字段映射（static, direct, jsonb等）
+    - 集成LLM增强字段
     - 提供统一的映射接口
     """
     
@@ -93,7 +95,8 @@ class DataMappingHelper:
         self,
         product_data: Dict[str, Any],
         template_rules: Dict[str, Any],
-        category_map: Optional[Dict] = None
+        category_map: Optional[Dict] = None,
+        llm_service = None  # LLM服务实例（可选）
     ) -> Dict[str, Any]:
         """
         应用映射规则到产品数据
@@ -102,17 +105,18 @@ class DataMappingHelper:
             product_data: 产品原始数据，包含：
                 - meow_sku
                 - vendor_sku
+                - category_name
                 - product_name
                 - product_description
                 - selling_point_1~5
                 - raw_data (JSONB)
                 - final_price
                 - total_quantity
-                - category_name
             template_rules: 模板规则，包含：
                 - valid_values
                 - variation_mapping
             category_map: 品类映射配置（可选）
+            llm_service: LLM服务实例（可选，用于增强字段）
                 
         Returns:
             映射后的字段字典
@@ -122,13 +126,19 @@ class DataMappingHelper:
         
         raw_data = product_data.get("raw_data", {}) or {}
         mapped_data = {}
+        llm_tasks = []  # 收集LLM任务
         
         # 第一轮：处理非LLM字段
         for field_name, rule in self.mapping_config.items():
             source_type = rule.get("source_type")
             
-            # 跳过LLM字段，稍后处理
+            # 收集LLM增强任务
             if source_type == "llm_enhanced":
+                llm_tasks.append({
+                    "field_name": field_name,
+                    "description": rule.get("description", ""),
+                    "output_type": rule.get("output_type", "string")
+                })
                 continue
             
             # 跳过field_reference，稍后处理
@@ -149,8 +159,121 @@ class DataMappingHelper:
                 if referenced_field in mapped_data:
                     mapped_data[field_name] = mapped_data[referenced_field]
         
+        # 第三轮：处理LLM增强字段
+        if llm_tasks and llm_service:
+            try:
+                enriched_data = self._enrich_with_llm(
+                    product_data,
+                    llm_tasks,
+                    template_rules,
+                    llm_service
+                )
+                mapped_data.update(enriched_data)
+                logger.debug(f"LLM增强完成，添加 {len(enriched_data)} 个字段")
+            except Exception as e:
+                logger.error(f"LLM增强失败: {e}")
+        
         logger.debug(f"映射完成，生成 {len(mapped_data)} 个字段")
         return mapped_data
+    
+    def _enrich_with_llm(
+        self,
+        product_data: Dict[str, Any],
+        llm_tasks: List[Dict],
+        template_rules: Dict,
+        llm_service
+    ) -> Dict[str, Any]:
+        """
+        使用LLM增强产品属性
+        
+        Args:
+            product_data: 产品原始数据
+            llm_tasks: LLM任务列表
+            template_rules: 模板规则
+            llm_service: LLM服务实例
+        """
+        from infrastructure.llm import LLMRequest
+        from src.utils.prompt_manager import PromptManager
+        
+        raw_data = product_data.get("raw_data", {}) or {}
+        
+        # 1. 构建产品profile
+        product_profile = {
+            "name": product_data.get("product_name"),
+            "description": self._strip_html(
+                product_data.get("product_description") or raw_data.get("description")
+            ),
+            "attributes": raw_data.get("attributes", {}),
+            "characteristics": raw_data.get("characteristics", []),
+            "dimensions_and_weight": {
+                "assembledLength": raw_data.get("assembledLength"),
+                "assembledWidth": raw_data.get("assembledWidth"),
+                "assembledHeight": raw_data.get("assembledHeight"),
+            }
+        }
+        
+        # 2. 构建标准化的 valid_values_map
+        valid_values_map = {
+            str(item.get('attribute')).strip().lower(): item.get('values', [])
+            for item in template_rules.get('valid_values', [])
+            if item.get('attribute')
+        }
+        
+        # 3. 为每个任务添加 valid_options（如果有）
+        processed_tasks = []
+        for task in llm_tasks:
+            field_name = task.get("field_name")
+            normalized_field_name = str(field_name).strip().lower()
+            
+            # 从 valid_values_map 查找
+            if normalized_field_name in valid_values_map:
+                task["valid_options"] = valid_values_map[normalized_field_name]
+            
+            processed_tasks.append(task)
+        
+        # 4. 构建LLM请求
+        user_content_data = {
+            "product_profile": product_profile,
+            "tasks": processed_tasks
+        }
+        user_content_str = json.dumps(user_content_data, indent=2, ensure_ascii=False)
+        
+        # 5. 获取Prompt
+        prompt_manager = PromptManager()
+        system_prompt = prompt_manager.get_prompt('prod_attribute_enrichment')
+        
+        if not system_prompt:
+            logger.error("未找到 prod_attribute_enrichment Prompt")
+            return {}
+        
+        # 6. 调用LLM
+        try:
+            request = LLMRequest(
+                task_type='product_attribute_enrichment',
+                system_prompt=system_prompt,
+                user_prompt=user_content_str,
+                json_mode=True,
+                temperature=0.7
+            )
+            
+            response = llm_service.generate(request)
+            llm_result = response.content
+            
+            logger.info(f"LLM成功生成 {len(llm_result)} 个增强字段")
+            return llm_result
+            
+        except Exception as e:
+            logger.error(f"调用LLM失败: {e}", exc_info=True)
+            return {}
+    
+    @staticmethod
+    def _strip_html(html_string: Optional[str]) -> str:
+        """移除HTML标签"""
+        if not html_string:
+            return ""
+        clean_text = re.sub(r'<[^>]+>', '', html_string)
+        clean_text = re.sub(r'\s+', ' ', clean_text).strip()
+        return clean_text
     
     def _map_single_field(
         self,

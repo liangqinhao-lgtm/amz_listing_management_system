@@ -36,6 +36,7 @@ class ProductDataRepository:
         - meow_sku_map: SKU映射
         - ds_api_product_details: LLM生成的产品详情
         - giga_product_sync_records: Giga原始数据（JSONB）
+        - supplier_categories_map: 品类映射
         - product_final_prices: 最终售价
         - giga_inventory: 库存数量
         
@@ -45,7 +46,9 @@ class ProductDataRepository:
         Returns:
             包含所有字段的字典：
             {
+                'meow_sku': 内部SKU,
                 'vendor_sku': 供应商SKU,
+                'category_name': 品类名称,
                 'product_name': 产品名称,
                 'product_description': 产品描述,
                 'selling_point_1': 卖点1,
@@ -61,7 +64,9 @@ class ProductDataRepository:
         Example:
             >>> repo.get_full_product_data('meow2511080spTk')
             {
+                'meow_sku': 'meow2511080spTk',
                 'vendor_sku': 'W2615S00273',
+                'category_name': 'CABINET',
                 'product_name': 'Modern Bathroom Vanity...',
                 'raw_data': {...},
                 'final_price': 299.99,

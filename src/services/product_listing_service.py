@@ -28,6 +28,7 @@ class ProductListingService:
     - 协调所有Repository和Helper
     - 实现完整的发品流程
     - 处理单品和变体的不同逻辑
+    - 集成LLM增强功能
     """
     
     def __init__(
@@ -58,6 +59,24 @@ class ProductListingService:
         # 加载品类配置（如果提供）
         self.category_config = self._load_category_config(category_config_path)
         
+        # 初始化LLM服务
+        try:
+            from infrastructure.llm import get_llm_service
+            self.llm_service = get_llm_service()
+            logger.info("LLM服务初始化成功")
+        except Exception as e:
+            logger.warning(f"LLM服务初始化失败: {e}，将跳过LLM增强字段")
+            self.llm_service = None
+        
+        # 初始化变体主题服务
+        try:
+            from src.services.variation_theme_service import VariationThemeService
+            self.variation_theme_service = VariationThemeService()
+            logger.info("变体主题服务初始化成功")
+        except Exception as e:
+            logger.warning(f"变体主题服务初始化失败: {e}")
+            self.variation_theme_service = None
+        
         self.db = db
         
         logger.info("ProductListingService 初始化完成")
@@ -80,6 +99,7 @@ class ProductListingService:
             try:
                 with open(config_path, 'r', encoding='utf-8') as f:
                     config = json.load(f)
+                    # 提取 category_details 部分
                     return config.get("category_details", {})
             except Exception as e:
                 logger.warning(f"加载品类配置失败: {e}")
@@ -251,11 +271,12 @@ class ProductListingService:
                     logger.warning(f"  跳过SKU {meow_sku}: 无数据")
                     continue
                 
-                # 应用映射
+                # 应用映射（传入LLM服务）
                 mapped_data = self.data_mapper.apply_mapping(
                     product_data,
                     template_rules,
-                    self.category_config
+                    self.category_config,
+                    self.llm_service
                 )
                 
                 # 添加单品特定字段
@@ -312,23 +333,61 @@ class ProductListingService:
         # 生成父SKU
         parent_sku = f"PARENT-{uuid.uuid4().hex[:12].upper()}"
         
-        # 获取第一个子SKU的数据作为父体数据
-        first_product = self.product_data_repo.get_full_product_data(family_skus[0])
+        # 1. 获取所有子SKU的完整数据
+        family_full_data = []
+        for sku in family_skus:
+            product_data = self.product_data_repo.get_full_product_data(sku)
+            if product_data:
+                family_full_data.append(product_data)
         
-        if not first_product:
-            logger.warning(f"  跳过家族: 无法获取第一个SKU数据")
+        if not family_full_data:
+            logger.warning(f"  跳过家族: 无法获取任何SKU数据")
             return rows, logs
         
-        # 1. 生成父体行
+        # 2. 使用LLM判定变体主题和属性
+        variation_theme = None
+        child_attributes_map = {}
+        
+        if self.variation_theme_service:
+            try:
+                # 获取有效的变体主题列表
+                valid_themes = self._extract_valid_themes(template_rules)
+                priority_themes = template_rules.get('priority_themes', [])
+                
+                logger.info(f"  调用LLM判定变体主题...")
+                llm_result = self.variation_theme_service.determine_variation_theme(
+                    family_full_data,
+                    valid_themes,
+                    priority_themes
+                )
+                
+                variation_theme = llm_result.get('variation_theme')
+                child_attributes_map = llm_result.get('child_attributes', {})
+                
+                logger.info(f"  变体主题: {variation_theme}")
+                
+            except Exception as e:
+                logger.error(f"  变体主题判定失败: {e}")
+        
+        # 3. 获取变体属性映射规则
+        variation_mapping = template_rules.get('variation_mapping', {})
+        
+        # 4. 生成父体行
+        first_product = family_full_data[0]
         parent_row = self.data_mapper.apply_mapping(
             first_product,
             template_rules,
-            self.category_config
+            self.category_config,
+            self.llm_service
         )
         
         parent_row['SKU'] = parent_sku
         parent_row['Listing Action'] = 'Create or Replace (Full Update)'
         parent_row['Relationship Type'] = 'Parent'
+        
+        # 添加变体主题
+        if variation_theme:
+            parent_row['Variation Theme'] = variation_theme
         
         # 泛化标题
         if 'Item Name' in parent_row:
@@ -338,7 +397,7 @@ class ProductListingService:
         
         rows.append(parent_row)
         
-        # 2. 生成子体行
+        # 5. 生成所有子体行
         for child_sku in family_skus:
             child_product = self.product_data_repo.get_full_product_data(child_sku)
             
@@ -348,12 +407,28 @@ class ProductListingService:
             child_row = self.data_mapper.apply_mapping(
                 child_product,
                 template_rules,
-                self.category_config
+                self.category_config,
+                self.llm_service
             )
             
             child_row['Listing Action'] = 'Create or Replace (Full Update)'
             child_row['Relationship Type'] = 'Child'
             child_row['Parent SKU'] = parent_sku
+            
+            # 添加变体属性
+            if child_sku in child_attributes_map:
+                # 获取内部属性（如 {'color_name': 'White', 'size_name': '36'}）
+                internal_attributes = child_attributes_map[child_sku]
+                
+                # 转换为Amazon字段名（如 {'Color': 'White', 'Size': '36'}）
+                amazon_attributes = {
+                    variation_mapping.get(k, k): v 
+                    for k, v in internal_attributes.items()
+                    if variation_mapping.get(k)
+                }
+                
+                # 合并到子体行
+                child_row.update(amazon_attributes)
             
             rows.append(child_row)
             
@@ -361,13 +436,31 @@ class ProductListingService:
             logs.append({
                 'meow_sku': child_sku,
                 'parent_sku': parent_sku,
-                'variation_attributes': {},  # 简化版本，可后续扩展
-                'listing_batch_id': None,  # 由调用方设置
+                'variation_attributes': child_attributes_map.get(child_sku, {}),
+                'listing_batch_id': None,
                 'status': 'GENERATED',
-                'variation_theme': None
+                'variation_theme': variation_theme
             })
         
         return rows, logs
+    
+    def _extract_valid_themes(self, template_rules: Dict) -> List[str]:
+        """
+        从模板规则中提取有效的变体主题列表
+        
+        Args:
+            template_rules: 模板规则
+        
+        Returns:
+            有效主题列表，如 ['Color', 'Size', 'Color/Size', 'Material']
+        """
+        # 从 valid_values 中查找 Variation Theme Name 的有效值
+        for item in template_rules.get('valid_values', []):
+            if item.get('attribute') == 'Variation Theme Name':
+                return item.get('values', [])
+        
+        # 如果没找到，返回常见主题
+        return ['Color', 'Size', 'Color/Size']
     
     def _save_listing_logs(
         self,

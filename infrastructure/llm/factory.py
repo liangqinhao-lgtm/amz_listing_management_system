@@ -43,6 +43,7 @@ def _load_direct_config() -> Dict:
         },
         'task_routing': {
             'product_generation': os.getenv('LLM_PROVIDER', 'qwen'),
-            'sku_mapping': 'qwen'
+            'sku_mapping': 'qwen',
+            'product_attribute_enrichment': os.getenv('LLM_PROVIDER', 'qwen')  # 新增
         }
     }
