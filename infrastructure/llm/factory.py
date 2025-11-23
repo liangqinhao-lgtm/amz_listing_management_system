@@ -19,9 +19,10 @@ def get_llm_service() -> LLMServiceInterface:
     # 从环境变量决定模式
     mode = os.getenv('LLM_SERVICE_MODE', 'direct')
     
-    if mode == 'agent':
-        # 未来实现
-        raise NotImplementedError("Agent模式尚未实现")
+    if mode == 'autogen':
+        from infrastructure.llm.implementations.autogen_llm_service import AutoGenLLMService
+        _service_instance = AutoGenLLMService()
+        logger.info("LLM服务初始化完成（AutoGen模式）")
     else:
         config = _load_direct_config()
         _service_instance = DirectLLMService(config)

@@ -4,8 +4,6 @@ import time
 from typing import Dict
 from infrastructure.llm.interface import LLMServiceInterface
 from infrastructure.llm.types import LLMRequest, LLMResponse
-from infrastructure.llm.clients.deepseek_client import DeepSeekAPIClient
-from infrastructure.llm.clients.qwen_client import QwenAPIClient
 
 logger = logging.getLogger(__name__)
 
@@ -24,12 +22,14 @@ class DirectLLMService(LLMServiceInterface):
         """初始化LLM客户端"""
         try:
             if 'deepseek' in self.config.get('providers', {}):
+                from infrastructure.llm.clients.deepseek_client import DeepSeekAPIClient
                 self.clients['deepseek'] = DeepSeekAPIClient()
         except Exception as e:
             logger.warning(f"DeepSeek客户端初始化失败: {e}")
         
         try:
             if 'qwen' in self.config.get('providers', {}):
+                from infrastructure.llm.clients.qwen_client import QwenAPIClient
                 self.clients['qwen'] = QwenAPIClient()
         except Exception as e:
             logger.warning(f"千问客户端初始化失败: {e}")
