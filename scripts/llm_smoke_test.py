@@ -3,7 +3,11 @@ import time
 import json
 import sys
 from pathlib import Path
-sys.path.append(str(Path(__file__).resolve().parent.parent))
+from dotenv import load_dotenv
+project_root = Path(__file__).resolve().parent.parent
+load_dotenv(dotenv_path=project_root / '.env')
+sys.path.append(str(project_root))
+
 from infrastructure.llm import get_llm_service, LLMRequest
 
 def main():
