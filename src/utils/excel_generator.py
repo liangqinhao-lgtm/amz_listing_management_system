@@ -178,6 +178,16 @@ class ExcelGenerator:
             header_map: 表头映射
             data_start_row: 数据起始行号
         """
+        # 需要提醒的硬编码字段集合
+        special_fields = {
+            'Parentage Level',
+            'Child Relationship Type',
+            'Parent SKU',
+            'Variation Theme Name'
+        }
+
+        missing_special_fields = set()
+
         for row_idx, row_data in enumerate(rows_data):
             current_row = data_start_row + row_idx
             
@@ -187,6 +197,9 @@ class ExcelGenerator:
                 if not col_indices:
                     # 字段在模板中不存在，跳过
                     logger.debug(f"字段 '{field_name}' 在模板中不存在，跳过")
+                    # 如果是硬编码字段，记录用于汇总提醒
+                    if field_name in special_fields:
+                        missing_special_fields.add(field_name)
                     continue
                 
                 # 处理列表类型的值（如 Bullet Point）
@@ -201,3 +214,8 @@ class ExcelGenerator:
                     worksheet.cell(row=current_row, column=col_idx, value=value)
         
         logger.info(f"填充完成，共写入 {len(rows_data)} 行数据")
+
+        # 汇总提醒：模板缺少应写入的硬编码字段
+        if missing_special_fields:
+            for f in sorted(missing_special_fields):
+                logger.warning(f"应写入字段 {f}，模板文档不包含该字段，请检查原因。")

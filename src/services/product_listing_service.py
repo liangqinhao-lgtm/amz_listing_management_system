@@ -388,7 +388,7 @@ class ProductListingService:
         
         # 添加变体主题
         if variation_theme:
-            parent_row['Variation Theme'] = variation_theme
+            parent_row['Variation Theme Name'] = variation_theme
         
         # 泛化标题
         if 'Item Name' in parent_row:
@@ -416,6 +416,7 @@ class ProductListingService:
             child_row['Relationship Type'] = 'Child'
             child_row['Parentage Level'] = 'Child'
             child_row['Parent SKU'] = parent_sku
+            child_row['Child Relationship Type'] = 'Variation'
             
             # 添加变体属性
             if child_sku in child_attributes_map:
