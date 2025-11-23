@@ -28,7 +28,7 @@ class CategoryRepository:
                                      scm.standard_category_name
                      FROM meow_sku_map m
                               JOIN
-                          product_sync_records psr ON m.vendor_sku = psr.giga_sku AND m.vendor_source = 'giga'
+                          giga_product_sync_records psr ON m.vendor_sku = psr.giga_sku AND m.vendor_source = 'giga'
                               LEFT JOIN
                           supplier_categories_map scm ON LOWER(psr.category_code) = LOWER(scm.supplier_category_code)
                               AND scm.supplier_platform = 'giga'
@@ -42,6 +42,10 @@ class CategoryRepository:
             return result
         except Exception as e:
             logger.exception(f"Failed to execute SKU to category mapping query: {e}")
+            try:
+                self.db.rollback()
+            except Exception:
+                pass
             return []
 
     def get_existing_category_codes(self, platform: str = 'giga') -> Set[str]:
