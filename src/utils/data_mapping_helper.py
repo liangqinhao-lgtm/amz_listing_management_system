@@ -5,6 +5,8 @@ Data Mapping Helper
 import json
 import logging
 import re
+import difflib
+import unicodedata
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 
@@ -158,8 +160,41 @@ class DataMappingHelper:
                 referenced_field = rule.get("field")
                 if referenced_field in mapped_data:
                     mapped_data[field_name] = mapped_data[referenced_field]
-        
-        # 第三轮：处理LLM增强字段
+
+        # 第三轮：与模板有效值对齐（模糊匹配）
+        try:
+            valid_values = template_rules.get('valid_values', []) if template_rules else []
+            attr_to_values = {
+                str(item.get('attribute')).strip(): item.get('values', [])
+                for item in valid_values
+                if item.get('attribute')
+            }
+            for field_name, value in list(mapped_data.items()):
+                candidates = attr_to_values.get(field_name)
+                if not candidates:
+                    continue
+                if value is None:
+                    continue
+                if isinstance(value, list):
+                    continue
+                if not isinstance(value, str):
+                    continue
+                if value in candidates:
+                    continue
+                norm_val = self._normalize_text(value)
+                exact = next((c for c in candidates if self._normalize_text(str(c)) == norm_val), None)
+                if exact is not None:
+                    mapped_data[field_name] = exact
+                    continue
+                match = self._fuzzy_select(value, candidates, cutoff=0.9)
+                if match is not None:
+                    mapped_data[field_name] = match
+                else:
+                    pass
+        except Exception as e:
+            logger.warning(f"有效值对齐失败: {e}")
+
+        # 第四轮：处理LLM增强字段
         if llm_tasks and llm_service:
             try:
                 enriched_data = self._enrich_with_llm(
@@ -172,7 +207,7 @@ class DataMappingHelper:
                 logger.debug(f"LLM增强完成，添加 {len(enriched_data)} 个字段")
             except Exception as e:
                 logger.error(f"LLM增强失败: {e}")
-        
+
         logger.debug(f"映射完成，生成 {len(mapped_data)} 个字段")
         return mapped_data
     
@@ -381,6 +416,27 @@ class DataMappingHelper:
                 break
         
         return temp_value
+
+    @staticmethod
+    def _normalize_text(text: str) -> str:
+        s = str(text)
+        s = unicodedata.normalize('NFKC', s)
+        s = s.casefold()
+        s = re.sub(r"\s+", " ", s).strip()
+        s = s.replace("-", " ")
+        s = s.replace("_", " ")
+        s = s.replace("  ", " ")
+        return s
+
+    @staticmethod
+    def _fuzzy_select(value: str, candidates: List[str], cutoff: float = 0.9) -> Optional[str]:
+        norm_candidates = {DataMappingHelper._normalize_text(c): c for c in candidates}
+        norm_value = DataMappingHelper._normalize_text(value)
+        pool = list(norm_candidates.keys())
+        matches = difflib.get_close_matches(norm_value, pool, n=1, cutoff=cutoff)
+        if matches:
+            return norm_candidates[matches[0]]
+        return None
     
     def _map_unit(self, unit_type: str, raw_data: Dict) -> Optional[str]:
         """映射单位"""
