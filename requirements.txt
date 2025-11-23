@@ -2,3 +2,4 @@
 # LLM相关
 dashscope>=1.14.0
 pyyaml>=6.0
+requests>=2.31.0
