@@ -384,6 +384,7 @@ class ProductListingService:
         parent_row['SKU'] = parent_sku
         parent_row['Listing Action'] = 'Create or Replace (Full Update)'
         parent_row['Relationship Type'] = 'Parent'
+        parent_row['Parentage Level'] = 'Parent'
         
         # 添加变体主题
         if variation_theme:
@@ -413,6 +414,7 @@ class ProductListingService:
             
             child_row['Listing Action'] = 'Create or Replace (Full Update)'
             child_row['Relationship Type'] = 'Child'
+            child_row['Parentage Level'] = 'Child'
             child_row['Parent SKU'] = parent_sku
             
             # 添加变体属性
