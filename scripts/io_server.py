@@ -23,6 +23,37 @@ class Handler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(b"ok")
             return
+        if self.path == "/" or self.path.startswith("/index"):
+            html = (
+                "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>AMZ Ops</title>"
+                "<style>body{font-family:system-ui,Arial;padding:24px;max-width:900px;margin:auto}"
+                "input,select{padding:8px;margin:6px 0;width:100%}"
+                "button{padding:10px 16px}</style></head><body>"
+                "<h2>Amazon Ops Service</h2>"
+                "<p>使用下方表单上传文件并触发任务，或直接调用 /run 接口。</p>"
+                "<form method=\"POST\" action=\"/run\" enctype=\"multipart/form-data\">"
+                "<label>Task</label><select name=\"task\">"
+                "<option value=\"generate-listing\">generate-listing</option>"
+                "<option value=\"import-amz-report\">import-amz-report</option>"
+                "<option value=\"generate-update-file\">generate-update-file</option>"
+                "<option value=\"template-update\">template-update</option>"
+                "<option value=\"template-correction\">template-correction</option>"
+                "</select>"
+                "<label>Category</label><input name=\"category\" placeholder=\"CABINET/HOME_MIRROR\">"
+                "<label>File</label><input type=\"file\" name=\"file\">"
+                "<label><input type=\"checkbox\" name=\"auto_confirm\" value=\"true\"> Auto Confirm</label>"
+                "<div style=\"margin-top:12px\"><button type=\"submit\">Run</button></div>"
+                "</form>"
+                "<p>健康检查：<code>/health</code>；API：<code>POST /run</code>。</p>"
+                "</body></html>"
+            )
+            data = html.encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(data)))
+            self.end_headers()
+            self.wfile.write(data)
+            return
         self.send_response(404)
         self.end_headers()
 
