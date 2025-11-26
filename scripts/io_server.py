@@ -67,7 +67,7 @@ class Handler(BaseHTTPRequestHandler):
                 "{id:'3.5',name:'从CSV批量更新品类映射',code:'update-mappings-from-csv',file:true,fileHint:'上传CSV'},"
                 "{id:'4.1',name:'从CSV批量同步SKU映射(未实现)',code:'sku-sync-from-csv',disabled:true},"
                 "{id:'5.1',name:'(一键) 生成亚马逊价格与库存更新文件',code:'generate-update-file'}"
-                "]""
+                "]"
                 ";const tbody=document.getElementById('tbody');tasks.forEach(t=>{const tr=document.createElement('tr');tr.innerHTML=\`<td>\${t.id}</td><td>\${t.name}</td><td>\${t.disabled?'<span style="color:#999">不可用</span>':'<button data-code="'+t.code+'" data-file="'+(t.file?'1':'0')+'" data-category="'+(t.category?'1':'0')+'">运行</button>'}</td>\`;tbody.appendChild(tr)});"
                 "function toast(s){const t=document.getElementById('toast');t.textContent=s;t.style.display='block';setTimeout(()=>t.style.display='none',2500)}"
                 "let current={};const modal=document.getElementById('modal');const fileRow=document.getElementById('fileRow');const categoryRow=document.getElementById('categoryRow');const fileHint=document.getElementById('fileHint');const fileInput=document.getElementById('fileInput');const categoryInput=document.getElementById('categoryInput');const autoConfirm=document.getElementById('autoConfirm');const modalTitle=document.getElementById('modalTitle');"
@@ -156,7 +156,7 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(json.dumps({"status": "ok", "message": "no downloadable output"}).encode("utf-8"))
 
 def run():
-    port = int(os.getenv("IO_SERVER_PORT", "8080"))
+    port = int(os.getenv("PORT") or os.getenv("IO_SERVER_PORT", "8080"))
     host = os.getenv("IO_SERVER_HOST", "0.0.0.0")
     server = HTTPServer((host, port), Handler)
     server.serve_forever()
