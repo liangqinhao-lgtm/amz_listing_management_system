@@ -624,10 +624,12 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/diagnostics":
             try:
                 import importlib
+                from sqlalchemy import text
+                
                 m = importlib.import_module("main")
                 if hasattr(m, "SessionLocal"):
                     with m.SessionLocal() as db:
-                        db.execute("SELECT 1")
+                        db.execute(text("SELECT 1"))
                 msg = {"status": "ok", "db": "connected"}
                 body = json.dumps(msg).encode("utf-8")
                 self.send_response(200)
