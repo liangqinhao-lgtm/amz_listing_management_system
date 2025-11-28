@@ -8,15 +8,33 @@ import cgi
 from pathlib import Path
 import logging
 import sys
+import threading
+import queue
+
+# Global log queue for real-time streaming
+log_queue = queue.Queue()
+
+class QueueHandler(logging.Handler):
+    """Custom logging handler to send logs to a queue"""
+    def emit(self, record):
+        try:
+            msg = self.format(record)
+            log_queue.put(msg)
+        except Exception:
+            self.handleError(record)
+
+# Configure logging to use both stream and queue
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+# Add queue handler to root logger
+queue_handler = QueueHandler()
+queue_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+logging.getLogger().addHandler(queue_handler)
 
 # Ensure project root is in sys.path so we can import main
 project_root = str(Path(__file__).resolve().parent.parent)
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
-
-# 配置基本日志
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
 
 def _run_task(task, category, file_path, auto_confirm):
     import importlib
@@ -206,6 +224,24 @@ INDEX_HTML = """<!DOCTYPE html>
             font-weight: 600;
             margin-bottom: 20px;
         }
+        .log-container {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+            font-size: 0.85rem;
+            height: 200px;
+            overflow-y: auto;
+            margin-bottom: 16px;
+            white-space: pre-wrap;
+            display: none;
+            border: 1px solid #334155;
+        }
+        .log-line {
+            margin: 2px 0;
+            line-height: 1.4;
+        }
         .form-group {
             margin-bottom: 16px;
         }
@@ -323,6 +359,8 @@ INDEX_HTML = """<!DOCTYPE html>
     <div class="modal">
         <div id="modalTitle" class="modal-title"></div>
         
+        <div id="logBox" class="log-container"></div>
+
         <div id="fileRow" class="form-group" style="display:none">
             <label id="fileHint" class="form-label">文件上传</label>
             <input type="file" id="fileInput" class="form-input">
@@ -445,6 +483,7 @@ INDEX_HTML = """<!DOCTYPE html>
     const autoConfirm = document.getElementById('autoConfirm');
     const runBtn = document.getElementById('runBtn');
     const runSpinner = document.getElementById('runSpinner');
+    const logBox = document.getElementById('logBox');
     
     // 打开模态框
     window.openModal = (btn) => {
@@ -463,6 +502,11 @@ INDEX_HTML = """<!DOCTYPE html>
         
         modalTitle.textContent = taskDef.name;
         
+        // Reset logs
+        logBox.innerHTML = '';
+        logBox.style.display = 'none';
+        
+        // Show inputs
         fileRow.style.display = currentTask.file ? 'block' : 'none';
         document.getElementById('fileHint').textContent = currentTask.fileHint;
         fileInput.value = '';
@@ -471,19 +515,51 @@ INDEX_HTML = """<!DOCTYPE html>
         categoryInput.value = '';
         
         autoConfirm.checked = false;
+        // Show inputs wrapper
+        document.querySelectorAll('.form-group, .checkbox-wrapper').forEach(el => el.style.display = '');
+        // Hide inputs based on task config
+        if (!currentTask.file) fileRow.style.display = 'none';
+        if (!currentTask.category) categoryRow.style.display = 'none';
         
         modal.classList.add('active');
     };
     
     // 关闭模态框
     document.getElementById('cancelBtn').onclick = () => {
+        if (runBtn.disabled) return; // Running
         modal.classList.remove('active');
     };
     
     // 点击背景关闭
     modal.onclick = (e) => {
+        if (runBtn.disabled) return; // Running
         if (e.target === modal) modal.classList.remove('active');
     };
+
+    // Poll logs
+    async function pollLogs() {
+        if (!runBtn.disabled) return;
+        try {
+            const res = await fetch('/logs');
+            if (res.ok) {
+                const logs = await res.json();
+                if (logs && logs.length > 0) {
+                    logs.forEach(msg => {
+                        const div = document.createElement('div');
+                        div.className = 'log-line';
+                        div.textContent = msg;
+                        logBox.appendChild(div);
+                    });
+                    logBox.scrollTop = logBox.scrollHeight;
+                }
+            }
+        } catch (e) {
+            console.error('Log polling error:', e);
+        }
+        if (runBtn.disabled) {
+            setTimeout(pollLogs, 1000);
+        }
+    }
 
     // Toast 提示
     function showToast(msg, type = 'info') {

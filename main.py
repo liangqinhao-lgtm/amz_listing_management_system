@@ -91,7 +91,7 @@ def print_menu():
 # 原有功能处理函数
 # ========================================================================
 
-def handle_sync_products(db: Session):
+def handle_sync_products(db: Session, auto_confirm: bool = False):
     """1.1 同步全量Giga收藏商品详情"""
     logger.info("🚀 启动商品同步流程...")
     
@@ -105,6 +105,13 @@ def handle_sync_products(db: Session):
         return
     
     print(f"✅ 获取到 {len(sku_list)} 个收藏商品")
+    
+    if not auto_confirm:
+        confirm = input(f"⚠️  即将同步 {len(sku_list)} 个商品的详情，是否继续? (y/n): ").strip().lower()
+        if confirm != 'y':
+            print("\n❌ 操作已取消")
+            return
+
     print(f"\n➡️  步骤 2/2: 同步商品详情...")
     
     total, success, failed = service.sync_product_details(sku_list)
@@ -760,7 +767,7 @@ def main():
             with SessionLocal() as db:
                 t = non_interactive_task.strip().lower()
                 if t == "sync-products":
-                    handle_sync_products(db)
+                    handle_sync_products(db, auto_confirm=auto_confirm)
                 elif t == "import-amz-report":
                     handle_import_amazon_report(db, file_path=param_file)
                 elif t == "update-listing-status":
@@ -811,7 +818,7 @@ def run_task(task: str, category: Optional[str] = None, file_path: Optional[str]
     with SessionLocal() as db:
         t = task.strip().lower()
         if t == "sync-products":
-            handle_sync_products(db)
+            handle_sync_products(db, auto_confirm=auto_confirm)
             return None
         elif t == "import-amz-report":
             handle_import_amazon_report(db, file_path=file_path)
