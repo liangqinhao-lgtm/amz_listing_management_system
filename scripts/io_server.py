@@ -3,6 +3,7 @@ import time
 import io
 import json
 import zipfile
+from socketserver import ThreadingMixIn
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import cgi
 from pathlib import Path
@@ -30,6 +31,20 @@ logger = logging.getLogger(__name__)
 queue_handler = QueueHandler()
 queue_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
 logging.getLogger().addHandler(queue_handler)
+
+class MultiStream:
+    """Redirects stream output to both original stream and queue"""
+    def __init__(self, stream, queue):
+        self.stream = stream
+        self.queue = queue
+
+    def write(self, message):
+        self.stream.write(message)
+        if message:
+            self.queue.put(message)
+
+    def flush(self):
+        self.stream.flush()
 
 # Ensure project root is in sys.path so we can import main
 project_root = str(Path(__file__).resolve().parent.parent)
@@ -587,6 +602,11 @@ INDEX_HTML = """<!DOCTYPE html>
         // UI Loading State
         runBtn.disabled = true;
         runSpinner.style.display = 'inline-block';
+        logBox.style.display = 'block';
+        logBox.innerHTML = '<div class="log-line">🚀 Task started...</div>';
+        
+        // Start polling logs
+        pollLogs();
         
         try {
             const fd = new FormData();
@@ -688,6 +708,10 @@ INDEX_HTML = """<!DOCTYPE html>
 </html>
 """
 
+class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
+    """Handle requests in a separate thread."""
+    daemon_threads = True
+
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/health":
@@ -721,6 +745,22 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_header("Content-Length", str(len(body)))
                 self.end_headers()
                 self.wfile.write(body)
+            return
+
+        if self.path == "/logs":
+            logs = []
+            while not log_queue.empty():
+                try:
+                    logs.append(log_queue.get_nowait())
+                except queue.Empty:
+                    break
+            
+            body = json.dumps(logs).encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
             return
             
         if self.path == "/" or self.path.startswith("/index"):
@@ -859,10 +899,13 @@ class Handler(BaseHTTPRequestHandler):
             self.send_error_json(500, "Failed to create output zip")
 
 def run():
+    # Redirect stdout to queue
+    sys.stdout = MultiStream(sys.stdout, log_queue)
+
     port = int(os.getenv("PORT") or os.getenv("IO_SERVER_PORT", "8080"))
     host = os.getenv("IO_SERVER_HOST", "0.0.0.0")
     print(f"🚀 Starting IO Server on {host}:{port}...")
-    server = HTTPServer((host, port), Handler)
+    server = ThreadedHTTPServer((host, port), Handler)
     try:
         server.serve_forever()
     except KeyboardInterrupt:
