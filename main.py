@@ -107,9 +107,14 @@ def handle_sync_products(db: Session, auto_confirm: bool = False):
     print(f"✅ 获取到 {len(sku_list)} 个收藏商品")
     
     if not auto_confirm:
-        confirm = input(f"⚠️  即将同步 {len(sku_list)} 个商品的详情，是否继续? (y/n): ").strip().lower()
-        if confirm != 'y':
-            print("\n❌ 操作已取消")
+        if sys.stdin and sys.stdin.isatty():
+            confirm = input(f"⚠️  即将同步 {len(sku_list)} 个商品的详情，是否继续? (y/n): ").strip().lower()
+            if confirm != 'y':
+                print("\n❌ 操作已取消")
+                return
+        else:
+            print(f"⚠️  即将同步 {len(sku_list)} 个商品的详情")
+            print("❌ 错误: 在 Web 界面运行此任务时，请务必勾选 '自动确认 (Auto Confirm)'")
             return
 
     print(f"\n➡️  步骤 2/2: 同步商品详情...")
@@ -589,9 +594,14 @@ def handle_sync_giga_categories(db: Session, auto_confirm: bool = False, export:
     
     try:
         if not auto_confirm:
-            confirm = input("是否继续执行? (y/n): ").strip().lower()
-            if confirm != 'y':
-                print("\n❌ 操作已取消")
+            if sys.stdin and sys.stdin.isatty():
+                confirm = input("是否继续执行? (y/n): ").strip().lower()
+                if confirm != 'y':
+                    print("\n❌ 操作已取消")
+                    print("="*70)
+                    return
+            else:
+                print("❌ 错误: 在 Web 界面运行此任务时，请务必勾选 '自动确认 (Auto Confirm)'")
                 print("="*70)
                 return
         
@@ -604,10 +614,12 @@ def handle_sync_giga_categories(db: Session, auto_confirm: bool = False, export:
             print()
             if export:
                 export_new_categories(result.get('new_category_list', []))
-            else:
+            elif sys.stdin and sys.stdin.isatty():
                 choice = input("是否导出新增品类列表到CSV文件? (y/n): ").strip().lower()
                 if choice == 'y':
                     export_new_categories(result.get('new_category_list', []))
+            else:
+                print("⚠️  非交互模式，跳过导出 CSV 询问")
         
     except Exception as e:
         print(f"\n❌ 品类同步失败: {e}")
